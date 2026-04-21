@@ -2,6 +2,37 @@
 
 Este repositório contém a entrega das atividades práticas da disciplina de Qualidade e Testes de Software, especificamente a implementação do cálculo do Imposto de Renda (IR), a modelagem do seu Grafo de Fluxo de Controle (GFC) e a geração de testes de unidade.
 
+```mermaid
+graph TD
+    Start([Início]) --> Cond1{renda < 0}
+    
+    Cond1 -- Sim --> Ret1["return 'Rejeitar entrada'"]
+    Cond1 -- Não --> Cond2{"renda >= 0<br>&& renda <= 5000"}
+
+    Cond2 -- Sim --> Ret2["return 'IR = 0'"]
+    Cond2 -- Não --> Cond3{"renda > 5000<br>&& renda <= 5500"}
+
+    Cond3 -- Sim --> Ret3["return 'IR com 75% desconto'"]
+    Cond3 -- Não --> Cond4{"renda > 5500<br>&& renda <= 6000"}
+
+    Cond4 -- Sim --> Ret4["return 'IR com 50% desconto'"]
+    Cond4 -- Não --> Cond5{"renda > 6000<br>&& renda <= 6500"}
+
+    Cond5 -- Sim --> Ret5["return 'IR com 25% desconto'"]
+    Cond5 -- Não --> Cond6{"renda > 6500<br>&& renda <= 7350"}
+
+    Cond6 -- Sim --> Ret6["return 'IR com 10% desconto'"]
+    Cond6 -- Não --> Ret7["return 'IR com 27,5% (sem desconto)'"]
+
+    Ret1 --> Fim([Fim])
+    Ret2 --> Fim
+    Ret3 --> Fim
+    Ret4 --> Fim
+    Ret5 --> Fim
+    Ret6 --> Fim
+    Ret7 --> Fim
+```
+
 ## Cabeçalho da Atividade
 
 * **Curso:** Desenvolvimento de Software Multiplataforma
